@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
 // ==========================================
 // FIREBASE CONFIGURATION 
@@ -17,12 +18,13 @@ export const firebaseConfig = {
 };
 
 // Initialize Firebase
-export let app, auth, db;
+export let app, auth, db, storage;
 export let isDemoMode = false;
 
 try {
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
+    storage = getStorage(app);
     
     // Enable local caching for instant data loads!
     db = initializeFirestore(app, {
